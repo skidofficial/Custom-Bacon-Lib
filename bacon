@@ -55,7 +55,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     TopBar.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
     TopBar.BorderSizePixel = 0
     TopBar.Position = UDim2.new(0.489757448, 0, 0.489311516, 0)
-    TopBar.Size = UDim2.new(0, sizeX, 0, 30)
+    TopBar.Size = UDim2.new(0, 240, 0, 30)
     TopBar.ZIndex = 0
     
     local UserInputService = game:GetService("UserInputService")
@@ -131,7 +131,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     TopLabel.ZIndex = 0
     TopLabel.Text = name
     TopLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TopLabel.TextSize = 14.000
+    TopLabel.TextSize = 11.000
     TopLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
     TopLabel.TextWrapped = true
     TopLabel.TextXAlignment = Enum.TextXAlignment.Left
