@@ -32,46 +32,45 @@ for _, gui in pairs(game:GetService("Players").LocalPlayer:WaitForChild("PlayerG
 end
 
 function library:CreateWindow(name, keyCode)
-    if name == nil then error("Specify a name.", 0) return false end
-    if not typeof(name) == "string" then error("Specify your name as a string.", 0) return false end
-
-
-    
-    local randomize = Instance.new("ScreenGui")
-    local TopBar = Instance.new("Frame")
-    local Container = Instance.new("Frame")
-    local TopLabel = Instance.new("TextLabel")
-    local SizeToggle = Instance.new("TextButton")
-    local listLayout = Instance.new("UIListLayout")
-    
-    randomize.Name = tostring(math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9).."_BACONLIB")
-    randomize.Parent = game:GetService("CoreGui").RobloxGui or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    randomize.DisplayOrder = 100
-    randomize.ResetOnSpawn = false
-    
-TopBar.Name = "TopBar"
+	if name == nil then error("Specify a name.", 0) return false end
+	if not typeof(name) == "string" then error("Specify your name as a string.", 0) return false end
+	
+	local randomize = Instance.new("ScreenGui")
+	local TopBar = Instance.new("Frame")
+	local Container = Instance.new("Frame")
+	local TopLabel = Instance.new("TextLabel")
+	local SizeToggle = Instance.new("TextButton")
+	local listLayout = Instance.new("UIListLayout")
+	
+	randomize.Name = tostring(math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9)..math.random(0, 9).."_BACONLIB")
+	randomize.Parent = game:GetService("CoreGui").RobloxGui or game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+	randomize.DisplayOrder = 100
+	randomize.ResetOnSpawn = false
+	
+	TopBar.Name = "TopBar"
 	TopBar.Parent = randomize
 	-- Custom drag system added.
 	--TopBar.Active = true
 	--TopBar.Draggable = true
-	TopBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	TopBar.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 	TopBar.BorderSizePixel = 0
 	TopBar.Position = UDim2.new(0.489757448, 0, 0.489311516, 0)
 	TopBar.Size = UDim2.new(0, 240, 0, 30)
 	TopBar.ZIndex = 0
-    
-    local UserInputService = game:GetService("UserInputService")
-    local TweenService = game:GetService("TweenService")
-    local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-    
-    local dragging
-    local dragInput
-    local dragStart
-    local startPos
+	
+	local UserInputService = game:GetService("UserInputService")
+	local TweenService = game:GetService("TweenService")
+	local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+	
+	local dragging;
+    local dragInput;
+    local dragStart;
+    local startPos;
     
     local function change(a)
-        local diff = a.Position - dragStart
+    	local diff = a.Position - dragStart
         local tween = TweenService:Create(TopBar, tweenInfo, {Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + diff.X, startPos.Y.Scale, startPos.Y.Offset + diff.Y)})
+        
         tween:Play()
     end
     
@@ -79,13 +78,13 @@ TopBar.Name = "TopBar"
         if a.UserInputType == Enum.UserInputType.MouseButton1 or a.UserInputType == Enum.UserInputType.Touch then
             dragging = true
             dragStart = a.Position
-            startPos = TopBar.Position
-            
-            a.Changed:Connect(function()
-                if a.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
+		    startPos = TopBar.Position
+		    
+		    a.Changed:Connect(function()
+		        if a.UserInputState == Enum.UserInputState.End then
+		            dragging = false
+		        end
+		    end)
         end
     end)
     
@@ -100,26 +99,30 @@ TopBar.Name = "TopBar"
             change(a)
         end
     end)
-    
-    if keyCode == nil then
-        keyCode = Enum.KeyCode.RightShift
-    end
-    
-    warn(name..": Press ["..tostring(keyCode).."] to show/hide the UI.")
-    UserInputService.InputBegan:Connect(function()
-        if UserInputService:IsKeyDown(keyCode) then
-            randomize.Enabled = not randomize.Enabled
-        end
-    end)
-    
-  	Container.Name = "Container"
+	
+	-- This is a good spot to put the keybind code so...
+	if keyCode == nil then -- this will keep older UIs from breaking
+	    keyCode = Enum.KeyCode.RightShift
+	end
+	
+	warn(name..": Press ["..tostring(keyCode).."] to show/hide the UI.")
+	UserInputService.InputBegan:Connect(function()
+	    if UserInputService:IsKeyDown(keyCode) then
+	        if randomize.Enabled == false then
+	            randomize.Enabled = true
+	        else
+	            randomize.Enabled = false
+	        end
+	    end
+	end)
+	
+	Container.Name = "Container"
 	Container.Parent = TopBar
-	Container.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	Container.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
 	Container.BorderSizePixel = 0
 	Container.ClipsDescendants = true
 	Container.Position = UDim2.new(-0.000485992437, 0, 0.974092603, 0)
 	Container.Size = UDim2.new(0, 240, 0, 0)
-    
 	
 	TopLabel.Name = "TopLabel"
 	TopLabel.Parent = TopBar
@@ -138,8 +141,7 @@ TopBar.Name = "TopBar"
 	TopLabel.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 	TopLabel.TextWrapped = true
 	TopLabel.TextXAlignment = Enum.TextXAlignment.Left
-    
-
+	
 	SizeToggle.Name = "SizeToggle"
 	SizeToggle.Parent = TopBar
 	SizeToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -156,43 +158,46 @@ TopBar.Name = "TopBar"
 	SizeToggle.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 	SizeToggle.TextWrapped = true
 	
-    
-    listLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    listLayout.Parent = Container
-    
-    spawn(function()
-        local TweenService = game:GetService("TweenService") 
-        local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
-        local tween
-        
-        local open = true
-        local debounce = false
-        
-        local savedOffset = sizeY
-        SizeToggle.MouseButton1Down:Connect(function()
-            if not debounce then
-                debounce = true
-                if open then
-                    savedOffset = Container.Size.Y.Offset
-                    tween = TweenService:Create(Container, tweenInfo, {Size = UDim2.new(0, 240, 0, 0)})
-                    SizeToggle.Text = "+"
-                else
-                    tween = TweenService:Create(Container, tweenInfo, {Size = UDim2.new(0, sizeX, 0, savedOffset)})
-                    SizeToggle.Text = "-"
-                end
-                tween:Play()
-                open = not open
-                
-                wait(0.35)
-                debounce = false
-            end
-        end)
-    end)
-    
-    TopBar.Position = UDim2.new(0, nextAllignmentAnchor, 0, 10)
-    nextAllignmentAnchor = nextAllignmentAnchor + 250
-    
-    return randomize
+	listLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	listLayout.Parent = Container
+	
+	-- Setup the scripting part
+	spawn(function()
+		local TweenService = game:GetService("TweenService") 
+		local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+		local tween
+		
+		local open = true
+		local debounce = false
+		
+		local savedOffset = 0
+		SizeToggle.MouseButton1Down:Connect(function()
+			if debounce == false then
+				debounce = true
+				if open == true then
+					savedOffset = Container.Size.Y.Offset
+					tween = TweenService:Create(Container, tweenInfo, {Size = Container.Size - UDim2.new(0, 0, 0, Container.Size.Y.Offset)})
+					tween:Play()
+					SizeToggle.Text = "+"
+					open = false
+				else
+					tween = TweenService:Create(Container, tweenInfo, {Size = Container.Size + UDim2.new(0, 0, 0, savedOffset)})
+					tween:Play()
+					SizeToggle.Text = "-"
+					open = true
+				end
+				
+				wait(0.35)
+				debounce = false
+			end
+		end)
+	end)
+	
+	-- Align GUI
+	TopBar.Position = UDim2.new(0, nextAllignmentAnchor, 0, 10)
+	nextAllignmentAnchor = nextAllignmentAnchor + 250
+	
+	return randomize
 end
 
 
