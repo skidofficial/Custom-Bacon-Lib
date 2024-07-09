@@ -52,7 +52,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     
     TopBar.Name = "TopBar"
     TopBar.Parent = randomize
-    TopBar.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+    TopBar.BackgroundColor3 = Color3.fromRGB(20,20,20)
     TopBar.BorderSizePixel = 0
     TopBar.Position = UDim2.new(0.489757448, 0, 0.489311516, 0)
     TopBar.Size = UDim2.new(0, 240, 0, 30)
@@ -112,7 +112,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     
     Container.Name = "Container"
     Container.Parent = TopBar
-    Container.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+    Container.BackgroundColor3 = Color3.fromRGB(30,30,30)
     Container.BorderSizePixel = 0
     Container.ClipsDescendants = true
     Container.Position = UDim2.new(0, 0, 1, 0)
@@ -489,7 +489,7 @@ function library:CreateToggle(window, text, currentState, func)
 	
 	local TweenService = game:GetService("TweenService")
 	local red = Color3.fromRGB(255, 57, 60)
-	local green = Color3.fromRGB(21, 69, 212)
+	local green = Color3.fromRGB(65, 126, 224)
 	
 	local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 	
