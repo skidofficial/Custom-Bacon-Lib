@@ -498,7 +498,7 @@ function library:CreateToggle(window, text, currentState, func)
 	
 	local TweenService = game:GetService("TweenService")
 	local red = Color3.fromRGB(255, 57, 60)
-	local green = Color3.fromRGB(96, 188, 25)
+	local green = Color3.fromRGB(21, 69, 212)
 	
 	local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
 	
