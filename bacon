@@ -31,12 +31,11 @@ for _, gui in pairs(game:GetService("Players").LocalPlayer:WaitForChild("PlayerG
     end
 end
 
-function library:CreateWindow(name, keyCode, sizeX, sizeY)
+function library:CreateWindow(name, keyCode)
     if name == nil then error("Specify a name.", 0) return false end
     if not typeof(name) == "string" then error("Specify your name as a string.", 0) return false end
 
-    if sizeX == nil or sizeY == nil then error("Specify sizeX and sizeY.", 0) return false end
-    if not (typeof(sizeX) == "number" and typeof(sizeY) == "number") then error("sizeX and sizeY should be numbers.", 0) return false end
+
     
     local randomize = Instance.new("ScreenGui")
     local TopBar = Instance.new("Frame")
@@ -116,7 +115,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     Container.BorderSizePixel = 0
     Container.ClipsDescendants = true
     Container.Position = UDim2.new(0, 0, 1, 0)
-    Container.Size = UDim2.new(0, sizeX, 0, sizeY)
+    Container.Size = UDim2.new(0, 240, 0, 0)
     
     TopLabel.Name = "TopLabel"
     TopLabel.Parent = TopBar
@@ -125,9 +124,9 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     TopLabel.BackgroundTransparency = 1.000
     TopLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
     TopLabel.BorderSizePixel = 0
-    TopLabel.Position = UDim2.new(0.0291666668, 0, -0.00833333377, 0)
-    TopLabel.Selectable = true
-    TopLabel.Size = UDim2.new(1, -60, 1, 0)  -- Updated to fit within the TopBar's width minus the SizeToggle button
+    	TopLabel.Position = UDim2.new(0.0291666668, 0, -0.00833333377, 0)
+	TopLabel.Selectable = true
+	TopLabel.Size = UDim2.new(0, 202, 0, 30)
     TopLabel.ZIndex = 0
     TopLabel.Text = name
     TopLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -169,7 +168,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
                 debounce = true
                 if open then
                     savedOffset = Container.Size.Y.Offset
-                    tween = TweenService:Create(Container, tweenInfo, {Size = UDim2.new(0, sizeX, 0, 0)})
+                    tween = TweenService:Create(Container, tweenInfo, {Size = UDim2.new(0, 240, 0, 0)})
                     SizeToggle.Text = "+"
                 else
                     tween = TweenService:Create(Container, tweenInfo, {Size = UDim2.new(0, sizeX, 0, savedOffset)})
@@ -185,7 +184,7 @@ function library:CreateWindow(name, keyCode, sizeX, sizeY)
     end)
     
     TopBar.Position = UDim2.new(0, nextAllignmentAnchor, 0, 10)
-    nextAllignmentAnchor = nextAllignmentAnchor + sizeX + 10
+    nextAllignmentAnchor = nextAllignmentAnchor + 250
     
     return randomize
 end
