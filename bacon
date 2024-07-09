@@ -122,7 +122,7 @@ function library:CreateWindow(name, keyCode, SizeX, SizeY)
 	Container.BorderSizePixel = 0
 	Container.ClipsDescendants = true
 	Container.Position = UDim2.new(-0.000485992437, 0, 0.974092603, 0)
-	Container.Size = UDim2.new(0, 240, 0, 0)
+	Container.Size = UDim2.new(0, SizeX, 0, 0)
 	
 	TopLabel.Name = "TopLabel"
 	TopLabel.Parent = TopBar
